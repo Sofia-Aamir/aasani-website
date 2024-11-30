@@ -1,0 +1,34 @@
+:root {
+    --color-1: #213A57;
+    --color-2: #0B6477;
+    --color-3: #14919B;
+    --color-4: #0AD1C8;
+    --color-5: #45DFB1;
+    --color-6: #80Ed99;
+    --color-7: #073235;
+  }
+  
+  /* Example usage in your CSS */
+  body {
+    background-color: var(--color-7);
+    color: var(--color-6);
+  }
+  
+  a {
+    color: var(--color-4);
+  }
+  
+  button {
+    background-color: var(--color-5);
+    color: var(--color-7);
+  }
+  
+  /* Hover Effects */
+  a:hover {
+    color: var(--color-3);
+  }
+  
+  button:hover {
+    background-color: var(--color-3);
+  }
+  
