@@ -2,6 +2,8 @@ import React from 'react';
 import { AiOutlineDownload } from 'react-icons/ai';
 import { FaUser } from 'react-icons/fa';
 import RevolutionizingDeliverySection from './RevolutionizingDeliverySection';  // Import the new section
+import ServicesSection from './ServicesInHomePage';
+import ClientTravellerSection from "./ClientTravellerSection";
 
 const HeroSection = () => {
   return (
@@ -63,6 +65,8 @@ const HeroSection = () => {
 
       {/* Import and Render the New Section */}
       <RevolutionizingDeliverySection />
+      <ServicesSection/>
+      <ClientTravellerSection />
     </div>
   );
 };
