@@ -70,11 +70,11 @@ const Navbar = () => {
             </Link>
 
             <Link 
-              to="/contact" 
+              to="/faq" 
               className="relative text-lg hover:text-[#FFD700] flex items-center group transition-all"
             >
                 <FaMapMarkerAlt className="mr-2 text-transparent group-hover:text-[#FFD700] transition-all" /> 
-              Contact Us
+             FAQ
               <span className="absolute left-2 bottom-[-2px] w-0 h-[2px] bg-[#FFD700] transition-all group-hover:w-full"></span> 
             </Link>
           </div>
