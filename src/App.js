@@ -8,6 +8,7 @@ import AboutUs from './Pages/AboutUs';
 import Features from './Pages/Features';
 import Testimonial from './Pages/Testimonial';
 import ContactUsPage from "./Pages/ContactUsPage";
+import FAQ from './Pages/FAQ';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
            <Route path="/features" element={<Features />} />
            <Route path="/testimonial" element={<Testimonial />} />
            <Route path="/contact-us" element={<ContactUsPage />} />
+           <Route path="/faq" element={<FAQ />} />
         </Routes>
 <Footer/>
       </div>
