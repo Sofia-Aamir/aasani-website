@@ -11,6 +11,7 @@ import Login from './Pages/Login';
 import Navbar from './Pages/Navbar'; // Import Navbar component
 import Footer from './Pages/Footer';
 import AdminDashboard from './Pages/AdminDashboard';
+import Sidebar from './Pages/Sidebar';
 
 function App() {
   return (
@@ -85,6 +86,11 @@ function App() {
 <Route 
           path="/admin-dashboard" 
           element={<AdminDashboard />} // No Navbar for Login page
+        />
+
+<Route 
+          path="/" 
+          element={<Sidebar />} // No Navbar for Login page
         />
       </Routes>
     </Router>
