@@ -118,24 +118,24 @@ const AdminDashboard = () => {
     <div className="flex">
       <Sidebar />
       <div className="flex-1 p-5 bg-[#14919B] min-h-screen">
-        <h1 className="text-3xl font-bold mb-5 text-white">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold mb-5 text-white">Dashboard</h1>
         {notification && (
-          <div className="bg-red-500 text-white p-3 rounded mb-4">
-            {notification}
-          </div>
-        )}
+  <div className="bg-red-500 text-white p-4 rounded-lg shadow-md mb-4">
+    <p className="text-sm">{notification}</p>
+  </div>
+)}
 
         {/* Metrics Cards */}
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="bg-[#80Ed99] p-5 shadow rounded border-2 border-[#213A57]">
+          <div className="bg-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
             <h3 className="text-xl font-medium">Total Users</h3>
             <p className="text-2xl font-bold">{users.length}</p>
           </div>
-          <div className="bg-[#80Ed99] p-5 shadow rounded border-2 border-[#213A57]">
+          <div className="bg-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
             <h3 className="text-xl font-medium">Active Users</h3>
             <p className="text-2xl font-bold">{users.filter((user) => user.status === "Active").length}</p>
           </div>
-          <div className="bg-[#80Ed99] p-5 shadow rounded border-2 border-[#213A57]">
+          <div className="bg-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
             <h3 className="text-xl font-medium">Daily Registrations</h3>
             <p className="text-2xl font-bold">35</p>
           </div>
@@ -143,19 +143,19 @@ const AdminDashboard = () => {
 
         {/* Charts Section */}
         <div className="grid gap-4 mt-5 md:grid-cols-3">
-          <div className="bg-white p-5 shadow rounded border-2 border-[#213A57]">
+          <div className="bg-white p-5 shadow rounded-xl border-2 border-[#213A57]">
             <h4 className="text-lg font-medium mb-3">Website Views</h4>
             <div style={{ width: "100%", height: "300px" }}>
               <Bar data={barData} />
             </div>
           </div>
-          <div className="bg-white p-5 shadow rounded border-2 border-[#213A57]">
+          <div className="bg-white p-5 shadow rounded-xl border-2 border-[#213A57]">
             <h4 className="text-lg font-medium mb-3">Daily Registrations</h4>
             <div style={{ width: "100%", height: "300px" }}>
               <Line data={lineData} />
             </div>
           </div>
-          <div className="bg-white p-5 shadow rounded border-2 border-[#213A57]">
+          <div className="bg-white p-5 shadow rounded-xl border-2 border-[#213A57]">
             <h4 className="text-lg font-medium mb-3">User  Activity</h4>
             <div style={{ width: "100%", height: "300px" }}>
               <Pie data={pieData} />
@@ -182,12 +182,12 @@ const AdminDashboard = () => {
               placeholder="Search Users..."
               value={searchQuery}
               onChange={handleSearch}
-              className="w-full px-4 py-2 border rounded"
+              className="w-full px-4 py-2 border rounded-xl"
             />
           </div>
 
           {/* User Table */}
-          <table className="w-full table-auto bg-white shadow rounded">
+          <table className="w-full table-auto bg-white shadow rounded-xl">
             <thead className="bg-gray-200">
               <tr>
                 <th className="p-3">Name</th>
@@ -212,13 +212,13 @@ const AdminDashboard = () => {
                   <td className="p-3">
                     <button 
                       onClick={() => handleEditUser (user)} 
-                      className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
+                      className="bg-blue-500 text-white px-3 py-1 rounded-xl mr-2"
                     >
                       <FaEdit />
                     </button>
                     <button 
                       onClick={() => setUsers(users.filter((u) => u.id !== user.id))} 
-                      className="bg-red-500 text-white px-3 py-1 rounded"
+                      className="bg-red-500 text-white px-3 py-1 rounded-xl"
                     >
                       <FaTrash />
                     </button>
@@ -232,7 +232,7 @@ const AdminDashboard = () => {
         {/* User Form */}
         {isFormVisible && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-6 rounded shadow-lg w-96">
+            <div className="bg-white p-6 rounded-xl shadow-lg w-96">
               <h3 className="text-xl font-medium mb-4">
                 {editingUser  ? "Edit User" : "Add User"}
               </h3>
@@ -243,7 +243,7 @@ const AdminDashboard = () => {
                     type="text" 
                     value={newUser.name} 
                     onChange={(e) => setNewUser ({ ...newUser , name: e.target.value })} 
-                    className="w-full px-4 py-2 border rounded"
+                    className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
                 <div className="mb-4">
@@ -252,7 +252,7 @@ const AdminDashboard = () => {
                     type="email" 
                     value={newUser.email} 
                     onChange={(e) => setNewUser ({ ...newUser , email: e.target.value })} 
-                    className="w-full px-4 py-2 border rounded"
+                    className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
                 <div className="mb-4">
@@ -261,7 +261,7 @@ const AdminDashboard = () => {
                     type="text" 
                     value={newUser.role} 
                     onChange={(e) => setNewUser ({ ...newUser , role: e.target.value })} 
-                    className="w-full px-4 py-2 border rounded"
+                    className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
                 <div className="mb-4">
@@ -270,7 +270,7 @@ const AdminDashboard = () => {
                     type="text" 
                     value={newUser.cnic} 
                     onChange={(e) => setNewUser ({ ...newUser , cnic: e.target.value })} 
-                    className="w-full px-4 py-2 border rounded"
+                    className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
                 <div className="mb-4">
@@ -278,7 +278,7 @@ const AdminDashboard = () => {
                   <select
                     value={newUser.status}
                     onChange={(e) => setNewUser ({ ...newUser , status: e.target.value })}
-                    className="w-full px-4 py-2 border rounded"
+                    className="w-full px-4 py-2 border rounded-xl"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -288,14 +288,14 @@ const AdminDashboard = () => {
                   <button
                     type="button"
                     onClick={() => setIsFormVisible(false)}
-                    className="px-4 py-2 bg-gray-300 rounded"
+                    className="px-4 py-2 bg-gray-300 rounded-xl"
                   >
                     Cancel
                   </button>
                   <button
                     type="button"
                     onClick={editingUser  ? handleSaveEdit : handleAddUser }
-                    className="px-4 py-2 bg-green-500 text-white rounded"
+                    className="px-4 py-2 bg-green-500 text-white rounded-xl"
                   >
                     {editingUser  ? "Save" : "Add"}
                   </button>

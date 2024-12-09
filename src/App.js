@@ -12,6 +12,7 @@ import Navbar from './Pages/Navbar'; // Import Navbar component
 import Footer from './Pages/Footer';
 import AdminDashboard from './Pages/AdminDashboard';
 import Sidebar from './Pages/Sidebar';
+import NotificationsPage from './Pages/NotificationsPage';
 
 function App() {
   return (
@@ -83,15 +84,10 @@ function App() {
           element={<Login />} // No Navbar for Login page
         />
 
-<Route 
-          path="/admin-dashboard" 
-          element={<AdminDashboard />} // No Navbar for Login page
-        />
-
-<Route 
-          path="/" 
-          element={<Sidebar />} // No Navbar for Login page
-        />
+<Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+           
+            <Route path="/" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );
