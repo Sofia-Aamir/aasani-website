@@ -1,40 +1,94 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import './Pages/styles.css'; // Import the CSS file
-import Navbar from './Pages/Navbar'; // Import the Navbar component
 import Home from './Pages/Home';
-import Footer from './Pages/Footer';
 import AboutUs from './Pages/AboutUs';
 import Features from './Pages/Features';
 import Testimonial from './Pages/Testimonial';
 import ContactUsPage from "./Pages/ContactUsPage";
 import FAQ from './Pages/FAQ';
+import Login from './Pages/Login';
+import Navbar from './Pages/Navbar'; // Import Navbar component
+import Footer from './Pages/Footer';
+import AdminDashboard from './Pages/AdminDashboard';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        {/* Include the Navbar component */}
-        <Navbar />
-        <Routes>
-           <Route path="/" element={<Home />} />
-           <Route path="/about" element={<AboutUs />} />
-           <Route path="/features" element={<Features />} />
-           <Route path="/testimonial" element={<Testimonial />} />
-           <Route path="/contact-us" element={<ContactUsPage />} />
-           <Route path="/faq" element={<FAQ />} />
-        </Routes>
-<Footer/>
-      </div>
+      <Routes>
+        {/* Wrap the pages with Navbar except for Login page */}
+        <Route 
+          path="/" 
+          element={
+            <>
+              <Navbar /> {/* Navbar will be displayed */}
+              <Home />
+              <Footer />
+            </>
+          }
+        />
+        <Route 
+          path="/about" 
+          element={
+            <>
+              <Navbar /> {/* Navbar will be displayed */}
+              <AboutUs />
+              <Footer />
+            </>
+          }
+        />
+        <Route 
+          path="/features" 
+          element={
+            <>
+              <Navbar /> {/* Navbar will be displayed */}
+              <Features />
+              <Footer />
+            </>
+          }
+        />
+        <Route 
+          path="/testimonial" 
+          element={
+            <>
+              <Navbar /> {/* Navbar will be displayed */}
+              <Testimonial />
+              <Footer />
+            </>
+          }
+        />
+        <Route 
+          path="/contact-us" 
+          element={
+            <>
+              <Navbar /> {/* Navbar will be displayed */}
+              <ContactUsPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route 
+          path="/faq" 
+          element={
+            <>
+              <Navbar /> {/* Navbar will be displayed */}
+              <FAQ />
+              <Footer />
+            </>
+          }
+        />
+        <Route 
+          path="/login" 
+          element={<Login />} // No Navbar for Login page
+        />
+
+<Route 
+          path="/admin-dashboard" 
+          element={<AdminDashboard />} // No Navbar for Login page
+        />
+      </Routes>
     </Router>
   );
 }
 
-
 export default App;
-
- // <Route path="/about" element={<About />} />
-          // <Route path="/features" element={<Features />} />
-          // <Route path="/testimonial" element={<Testimonial />} />
-          // <Route path="/contact" element={<Contact />} />
-          // <Route path="/login" element={<Login />} /> */}

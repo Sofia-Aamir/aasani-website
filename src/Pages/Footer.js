@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,7 +16,8 @@ const Footer = () => {
               Managing your courier deliveries with ease, powered by AI-driven
               support and insights for smooth operations.
             </p>
-            <div className="mt-[18px] flex gap-4">
+            <div
+             className="mt-[18px] flex gap-2">
               <a
                 className="hover:scale-110"
                 target="_blank"
@@ -55,8 +57,8 @@ const Footer = () => {
                 <img
                   alt="instagram icon"
                   loading="lazy"
-                  width="36"
-                  height="36"
+                  width="39"
+                  height="39"
                   decoding="async"
                   src="/Images/instagram.png"
                 />
@@ -76,6 +78,11 @@ const Footer = () => {
                   src="/Images/youtube.png"
                 />
               </a>
+              <Link to="/login">
+                <button className="bg-[#213A57] text-white font-medium py-2 px-4 rounded-md hover:bg-[#101c2a]">
+                  Admin Login
+                </button>
+              </Link>
             </div>
           </div>
           <div className="md:w-[316px]">
