@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+// AdminDashboard.js
+import React, { useState} from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "chart.js/auto";
-import { FaUserPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import { FaUserPlus, FaEdit, FaTrash, FaRegEyeSlash  } from 'react-icons/fa';
 import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const AdminDashboard = () => {
+export  default function AdminDashboard () {
   const [notification, setNotification] = useState("");
+  const navigate = useNavigate();
+
   // Dummy Data for Charts
   const barData = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -50,19 +55,19 @@ const AdminDashboard = () => {
 
   // Dummy Data for Users
   const initialUsers = [
-    { id: 1, name: "John Doe", email: "john@example.com", role: "Admin", registrationDate: "2023-01-10", status: "Active", cnic: "17101-567348-0" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Moderator", registrationDate: "2023-02-15", status: "Active", cnic: "17101-567348-0" },
-    { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "User  ", registrationDate: "2023-03-20", status: "Inactive", cnic: "17101-567348-0" },
-    { id: 4, name: "Alice Brown", email: "alice@example.com", role: "User  ", registrationDate: "2023-04-25", status: "Active", cnic: "17101-567348-0" },
-    { id: 5, name: "Charlie Davis", email: "charlie@example.com", role: "Admin", registrationDate: "2023-05-30", status: "Active", cnic: "17101-567348-0" },
-    { id: 6, name: "Eva White", email: "eva@example.com", role: "Moderator", registrationDate: "2023-06-18", status: "Inactive", cnic: "17101-567348-0" },
-    { id: 7, name: "Michael Green", email: "michael@example.com", role: "User  ", registrationDate: "2023-07-22", status: "Active", cnic: "17101-567348-0" },
-    { id: 8, name: "Sophia Black", email: "sophia@example.com", role: "Admin", registrationDate: "2023-08-11", status: "Active", cnic: "17101-567348-0" }
+    { id: 1, name: "John Doe", type: "Traveller", email: "john@example.com", status: "Active", registrationDate: "2023-01-10", CNIC: "17101-5679540-2",blocked:true },
+    { id: 2, name: "Jane Smith", type: "Client", email: "jane@example.com", status: "Active", registrationDate: "2023-02-15", CNIC: "17101-5679540-2", blocked: false },
+    { id: 3, name: "Bob Johnson", type: "Traveller", email: "bob@example.com", status: "Inactive", registrationDate: "2023-03-20", CNIC: "17101-5679540-2", blocked:true },
+    { id: 4, name: "Alice Brown", type: "Traveller", email: "alice@example.com", status: "Active", registrationDate: "2023-04-25", CNIC: "17101-5679540-2",blocked:true },
+    { id: 5, name: "Charlie Davis", type: "Client", email: "charlie@example.com", status: "Active", registrationDate: "2023-05-30", CNIC: "17101-5679540-2",blocked:false },
+    { id: 6, name: "Eva White", type: "Client", email: "eva@example.com", status: "Inactive", registrationDate: "2023-06-18", CNIC: "17101-5679540-2",blocked:false },
+    { id: 7, name: "Charlie Davis", type: "Client", email: "charlie@example.com", status: "Active", registrationDate: "2023-05-30", CNIC: "17101-5679540-2",blocked:false },
+    { id: 8, name: "Eva White", type: "Client", email: "eva@example.com", status: "Inactive", registrationDate: "2023-06-18", CNIC: "17101-5679540-2",blocked:false },
   ];
 
   const [users, setUsers] = useState(initialUsers);
   const [searchQuery, setSearchQuery] = useState("");
-  const [newUser  , setNewUser  ] = useState({
+  const [newUser   , setNewUser   ] = useState({
     name: "",
     email: "",
     role: "",
@@ -70,48 +75,55 @@ const AdminDashboard = () => {
     registrationDate : "",
     cnic: "",
   });
-  const [editingUser  , setEditingUser  ] = useState(null);
+  const [editingUser   , setEditingUser   ] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
 
+  
   // Handle Search
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-    const filteredUsers = initialUsers.filter(
-      (user) =>
-        user.name.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query) ||
-        user.role.toLowerCase().includes(query)
-    );
-    setUsers(filteredUsers);
-  };
+const handleSearch = (e) => {
+  const query = e.target.value.toLowerCase();
+  setSearchQuery(query);
+  const filteredUsers = initialUsers.filter(
+    (user) =>
+      user.name.toLowerCase().includes(query) ||
+      user.email.toLowerCase().includes(query) ||
+      user.type.toLowerCase().includes(query) // Corrected from user.role to user.type
+  );
+  setUsers(filteredUsers);
+};
 
   // Add User
-  const handleAddUser   = () => {
+  const handleAddUser = () => {
     if (!newUser.name || !newUser.email || !newUser.role || !newUser.cnic) {
       setNotification("Please fill in all fields.");
       return;
     }
   
-    setUsers([...users, { ...newUser  , id: users.length + 1, registrationDate: new Date().toLocaleDateString() }]);
-    setNewUser  ({ name: "", email: "", role: "", status: "Active", registrationDate: "", cnic: "" });
+    setUsers([...users, { ...newUser   , id: users.length + 1, registrationDate: new Date().toLocaleDateString() }]);
+    setNewUser   ({ name: "", email: "", role: "", status: "Active", registrationDate: "", cnic: "" });
     setIsFormVisible(false);
     setNotification(""); // Clear notification
   };
 
   // Edit User
-  const handleEditUser   = (user) => {
-    setEditingUser  (user);
-    setNewUser  (user);
+  const handleEditUser    = (user) => {
+    setEditingUser   (user);
+    setNewUser   (user);
     setIsFormVisible(true);
   };
 
   // Save Edited User
   const handleSaveEdit = () => {
-    setUsers(users.map(user => (user.id === editingUser.id ? newUser  : user)));
-    setEditingUser  (null);
-    setNewUser  ({ name: "", email: "", role: "", status: "Active", registrationDate: "", cnic: "" });
+    setUsers(users.map(user => (user.id === editingUser.id ? newUser : user)));
+    setEditingUser   (null);
+    setNewUser   ({ name: "", email: "", role: "", status: "Active", registrationDate: "", cnic: "" });
     setIsFormVisible(false);
+  };
+
+  const handleIgnoreUser = (userToIgnore) => {
+    setUsers(users.map((user) =>
+      user.id === userToIgnore.id ? { ...user, ignored: !user.ignored } : user
+    ));
   };
 
   return (
@@ -126,19 +138,76 @@ const AdminDashboard = () => {
 )}
 
         {/* Metrics Cards */}
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="bg-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
-            <h3 className="text-xl font-medium">Total Users</h3>
-            <p className="text-2xl font-bold">{users.length}</p>
-          </div>
-          <div className="bg-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
-            <h3 className="text-xl font-medium">Active Users</h3>
-            <p className="text-2xl font-bold">{users.filter((user) => user.status === "Active").length}</p>
-          </div>
-          <div className="bg-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
-            <h3 className="text-xl font-medium">Daily Registrations</h3>
-            <p className="text-2xl font-bold">35</p>
-          </div>
+        <div className="grid gap-4 md:grid-cols-4">
+        <div className="bg-gradient-to-r from-[#0AD1C8] to-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
+  <h3 className="text-xl font-medium flex items-center">
+  {/* User Icon */}
+    Latest Users
+  </h3>
+  <div className="flex items-center justify-between">
+    <p className="text-2xl font-bold">{users.length}</p>
+    <button
+      onClick={() => navigate("/all-users")} // Navigate to the new page
+      className="underline text-black ml-3"
+    >
+      View Users
+    </button>
+  </div>
+</div>
+
+
+<div className="bg-gradient-to-r from-[#0AD1C8] to-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
+  <h3 className="text-xl font-medium">Latest Traveller</h3>
+  <div className="flex items-center justify-between">
+    <p className="text-2xl font-bold">
+      {initialUsers.filter((user) => user.type === "Traveller").length}
+    </p>
+    <button
+      onClick={() => navigate("/all-users?type=Traveller")}
+      className="underline text-black ml-3"
+    >
+      View Travellers
+    </button>
+  </div>
+</div>
+
+<div className="bg-gradient-to-r from-[#0AD1C8] to-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57]">
+  <h3 className="text-xl font-medium">Latest Clients</h3>
+  <div className="flex items-center justify-between">
+    <p className="text-2xl font-bold">
+      {users.filter((user) => user.type === "Client").length}
+    </p>
+    <button
+      onClick={() => navigate("/all-users?type=Client")}
+      className="underline text-black ml-3"
+    >
+      View Clients
+    </button>
+  </div>
+</div>
+
+<div
+  className="bg-gradient-to-r from-[#0AD1C8] to-[#80Ed99] p-5 shadow rounded-xl border-2 border-[#213A57] cursor-pointer"
+  onClick={() => navigate("/blocked-users")} // Navigate to the Blocked Users page
+>
+  <h3 className="text-xl font-medium">Blocked Users</h3>
+  <div className="flex items-center justify-between">
+    <p className="text-2xl font-bold">
+      {users.filter((user) => user.blocked).length}
+    </p>
+    <button
+      onClick={(e) => {
+        e.stopPropagation(); // Prevent the outer click handler from firing
+        navigate("/all-users?type=Blocked");
+      }}
+      className="underline text-black ml-3"
+    >
+      View Blocked Users
+    </button>
+  </div>
+</div>
+
+
         </div>
 
         {/* Charts Section */}
@@ -156,7 +225,7 @@ const AdminDashboard = () => {
             </div>
           </div>
           <div className="bg-white p-5 shadow rounded-xl border-2 border-[#213A57]">
-            <h4 className="text-lg font-medium mb-3">User  Activity</h4>
+            <h4 className="text-lg font-medium mb-3">User   Activity</h4>
             <div style={{ width: "100%", height: "300px" }}>
               <Pie data={pieData} />
             </div>
@@ -166,7 +235,7 @@ const AdminDashboard = () => {
         {/* User List Section */}
         <div className ="mt-5">
           <div className="flex justify-between items-center mb-5">
-            <h3 className="text-2xl font-medium text-white">User  List</h3>
+            <h3 className="text-2xl font-medium text-white">Latest User List</h3>
             <button 
               onClick={() => setIsFormVisible(true)} 
               className="bg-green-500 text-white px-4 py-2 rounded"
@@ -188,7 +257,7 @@ const AdminDashboard = () => {
 
           {/* User Table */}
           <table className="w-full table-auto bg-white shadow rounded-xl">
-            <thead className="bg-gray-200">
+            <thead className="bg-[#80Ed99]">
               <tr>
                 <th className="p-3">Name</th>
                 <th className="p-3">Email</th>
@@ -201,28 +270,35 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr key={user.id} className="border-b hover:bg-gray-100">
-                  <td className="p-3">{user.name}</td>
+                <tr key={user.id} className="border-b bg-[#ADD8E6] hover:bg-[#DEEFF5]">
+                  <td className="p-3"><Link to={`/user/${user.id}`}>{user.name}</Link></td>
                   <td className="p-3">{user.email}</td>
-                  <td className="p-3">{user.cnic}</td>
-                  <td className="p-3">{user.role}</td>
+                  <td className="p-3">{user.CNIC}</td>
+                  <td className="p-3">{user.type}</td>
                   <td className="p-3">{user.registrationDate}</td>
                   <td className="p-3">{user.status}</td>
 
                   <td className="p-3">
-                    <button 
-                      onClick={() => handleEditUser (user)} 
-                      className="bg-blue-500 text-white px-3 py-1 rounded-xl mr-2"
-                    >
-                      <FaEdit />
-                    </button>
-                    <button 
-                      onClick={() => setUsers(users.filter((u) => u.id !== user.id))} 
-                      className="bg-red-500 text-white px-3 py-1 rounded-xl"
-                    >
-                      <FaTrash />
-                    </button>
-                  </td>
+  <button
+    onClick={() => handleEditUser(user)}
+    className="text-black px-2 py-1 rounded-xl mr-1"  // Reduced padding and margin
+  >
+    <FaEdit />
+  </button>
+  <button
+    onClick={() => setUsers(users.filter((u) => u.id !== user.id))}
+    className="text-red-700 px-2 py-1 rounded-xl mr-1"  // Reduced padding and margin
+  >
+    <FaTrash />
+  </button>
+  <button
+    onClick={() => handleIgnoreUser(user)}
+    className="text-yellow-700 px-2 py-1 rounded-xl"  // Reduced padding
+  >
+    <FaRegEyeSlash />
+  </button>
+</td>
+
                 </tr>
               ))}
             </tbody>
@@ -234,7 +310,7 @@ const AdminDashboard = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-xl shadow-lg w-96">
               <h3 className="text-xl font-medium mb-4">
-                {editingUser  ? "Edit User" : "Add User"}
+                {editingUser   ? "Edit User" : "Add User"}
               </h3>
               <form>
                 <div className="mb-4">
@@ -242,7 +318,7 @@ const AdminDashboard = () => {
                   <input 
                     type="text" 
                     value={newUser.name} 
-                    onChange={(e) => setNewUser ({ ...newUser , name: e.target.value })} 
+                    onChange={(e) => setNewUser  ({ ...newUser  , name: e.target.value })} 
                     className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
@@ -251,7 +327,7 @@ const AdminDashboard = () => {
                   <input 
                     type="email" 
                     value={newUser.email} 
-                    onChange={(e) => setNewUser ({ ...newUser , email: e.target.value })} 
+                    onChange={(e) => setNewUser  ({ ...newUser  , email: e.target.value })} 
                     className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
@@ -260,7 +336,7 @@ const AdminDashboard = () => {
                   <input 
                     type="text" 
                     value={newUser.role} 
-                    onChange={(e) => setNewUser ({ ...newUser , role: e.target.value })} 
+                    onChange={(e) => setNewUser  ({ ...newUser  , role: e.target.value })} 
                     className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
@@ -269,7 +345,7 @@ const AdminDashboard = () => {
                   <input 
                     type="text" 
                     value={newUser.cnic} 
-                    onChange={(e) => setNewUser ({ ...newUser , cnic: e.target.value })} 
+                    onChange={(e) => setNewUser  ({ ...newUser  , cnic: e.target.value })} 
                     className="w-full px-4 py-2 border rounded-xl"
                   />
                 </div>
@@ -277,7 +353,7 @@ const AdminDashboard = () => {
                   <label className="block text-sm font-medium text-gray-700">Status</label>
                   <select
                     value={newUser.status}
-                    onChange={(e) => setNewUser ({ ...newUser , status: e.target.value })}
+ onChange={(e) => setNewUser ({ ...newUser , status: e.target.value })}
                     className="w-full px-4 py-2 border rounded-xl"
                   >
                     <option value="Active">Active</option>
@@ -308,5 +384,3 @@ const AdminDashboard = () => {
     </div>
   );
 };
-
-export default AdminDashboard;
