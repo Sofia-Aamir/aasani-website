@@ -40,7 +40,7 @@ const HeroSection = () => {
             </h1>
 
             {/* Short Paragraph */}
-            <p className="mt-4 text-lg text-center md:text-left">
+            <p className="mt-4 text-lg text-center md:text-left text-white">
               We provide fast, reliable, and convenient courier services wherever you are. 
               Your trusted partner in every delivery. Experience excellence in every step of the journey.
             </p>

@@ -3,7 +3,8 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaRegEnvelope, FaShippingFast} from "react-
 
 const ContactUsPage = () => {
   return (
-    <div className="font-[sans-serif] max-w-6xl mx-auto relative bg-white rounded-lg py-6">
+    <div className="bg-[#0B6477]">
+    <div className="font-[sans-serif] max-w-6xl mx-auto relative bg-[#0B6477] rounded-lg py-6">
       <div className="grid lg:grid-cols-3 items-center">
         {/* Contact Information Section */}
         <div className="grid sm:grid-cols-2 gap-4 z-20 relative lg:left-16 max-lg:px-4">
@@ -65,6 +66,7 @@ const ContactUsPage = () => {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 };
