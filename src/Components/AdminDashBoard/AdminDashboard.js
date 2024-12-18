@@ -3,7 +3,7 @@ import React, { useState} from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "chart.js/auto";
 import { FaUserPlus, FaEdit, FaTrash, FaRegEyeSlash  } from 'react-icons/fa';
-import Sidebar from './Sidebar';
+import Sidebar from '../SidebarInAdminPanel/Sidebar';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 

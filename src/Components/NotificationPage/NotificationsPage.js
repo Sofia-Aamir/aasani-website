@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPaperPlane, FaBullhorn } from 'react-icons/fa'; // Importing the announcement icon
-import Sidebar from './Sidebar';
+import Sidebar from '../SidebarInAdminPanel/Sidebar';
 
 const NotificationsPage = () => {
   const [announcements] = useState([

@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { UserProvider } from './Pages/UserContext'; // Import UserProvider
-import Home from './Pages/Home';
-import AboutUs from './Pages/AboutUs';
-import Features from './Pages/Features';
-import Testimonial from './Pages/Testimonial';
-import ContactUsPage from "./Pages/ContactUsPage";
-import FAQ from './Pages/FAQ';
-import Login from './Pages/Login';
-import Navbar from './Pages/Navbar';
-import Footer from './Pages/Footer';
-import AdminDashboard from './Pages/AdminDashboard';
-import NotificationsPage from './Pages/NotificationsPage';
-import UserProfile from './Pages/UserProfile';
-import BlockedUsers from './Pages/BlockedUsers';
-import AllUsersPage from './Pages/AllUsersPage';
-import ComplaintsPage from './Pages/ComplaintsPage';
-import ComplaintDetailPage from './Pages/ComplaintDetailPage';
+import { UserProvider } from './Components/AdminDashBoard/UserContext'; // Import UserProvider
+import Home from './Components/HomePage/Home';
+import AboutUs from './Components/AboutUsPage/AboutUs';
+import Features from './Components/FeaturesPages/Features';
+import Testimonial from './Components/TestimonialPage/Testimonial';
+import ContactUsPage from "./Components/ContactUsPage/ContactUsPage";
+import FAQ from './Components/FAQ/FAQ';
+import Login from './Components/LoginPage/Login';
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
+import AdminDashboard from './Components/AdminDashBoard/AdminDashboard';
+import NotificationsPage from './Components/NotificationPage/NotificationsPage';
+import UserProfile from './Components/AdminDashBoard/UserProfile';
+import BlockedUsers from './Components/AdminDashBoard/BlockedUsers';
+import AllUsersPage from './Components/AdminDashBoard/AllUsersPage';
+import ComplaintsPage from './Components/ComplaintPage/ComplaintsPage';
+import ComplaintDetailPage from './Components/ComplaintPage/ComplaintDetailPage';
+
+
 
 function App() {
   const [users, setUsers] = useState([

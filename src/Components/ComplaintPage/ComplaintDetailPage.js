@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import Sidebar from '../SidebarInAdminPanel/Sidebar';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 // Mock complaint data (you should replace this with actual data fetching)

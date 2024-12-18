@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaExclamationCircle, FaSearch, FaFilter } from 'react-icons/fa';
-import Sidebar from './Sidebar';
+import Sidebar from '../SidebarInAdminPanel/Sidebar';
 
 // Sample data structure
 const complaints = [

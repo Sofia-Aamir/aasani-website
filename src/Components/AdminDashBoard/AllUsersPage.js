@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "../SidebarInAdminPanel/Sidebar";
 import { useLocation } from "react-router-dom";
 
 export default function AllUsersPage() {
